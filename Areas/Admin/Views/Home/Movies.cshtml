@@ -1,0 +1,29 @@
+﻿@model General
+<div>
+    <h3>Редакция фильмов</h3>
+    <div>
+        <a style="margin: 0; color:darkkhaki" asp-area="Admin" asp-controller="MovieItems" asp-action="Edit" asp-route-id="">Добавить фильм</a>
+    </div>
+    <br />
+    @if (Model.MovieReposit.GetAll().Any())
+    {
+        <div>
+            @foreach (MovieItem entity in Model.MovieReposit.GetAll())
+            {
+                <div>
+                    <a asp-area="Admin" asp-controller="MovieItems" asp-action="Edit" asp-route-id="@entity.Id">редактировать|</a>
+
+                    <form style="display: inline; margin: 0" id="form-@entity.Id" asp-area="Admin" asp-controller="MovieItems" asp-action="Delete" method="post">
+                        <input type="hidden" name="id" value="@entity.Id">
+                        <a href="#" onclick="ConfirmDelete('form-@entity.Id')">удалить|</a>
+                    </form>
+
+                    <a asp-area="" asp-controller="MovieShow" asp-action="Index" asp-route-id="@entity.Id">
+                        @($"{entity.Title}")
+                    </a>
+                </div>
+                <br />
+            }
+        </div>
+    }
+</div>

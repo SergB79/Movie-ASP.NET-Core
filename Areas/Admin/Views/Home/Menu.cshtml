@@ -1,0 +1,33 @@
+﻿@model General
+<div>
+    <h3>Редакция меню</h3>
+    <div>
+        <a style="margin: 0; color:darkkhaki" asp-area="Admin" asp-controller="MenuFields" asp-action="Edit" asp-route-id="">Добавить меню</a>
+    </div>
+    <br />
+    @if (Model.MenuReposit.GetAll().Any())
+    {
+        <div>
+            @foreach (MenuField entityMenu in Model.MenuReposit.GetAll())
+            {
+                @if (entityMenu.CodeWord != "PageIndex")
+                {
+            <div>
+                <a asp-area="Admin" asp-controller="MenuFields" asp-action="Edit" asp-route-id="@entityMenu.Id">редактировать|</a>
+
+                <!--<a asp-area="Admin" asp-controller="MenuFields" asp-action="Delete" asp-route-id="@entityMenu.Id">удалить|</a>-->
+                <form style="display: inline; margin: 0" id="formMenu-@entityMenu.Id" asp-area="Admin" asp-controller="MenuFields" asp-action="Delete" method="post">
+                    <input type="hidden" name="id" value="@entityMenu.Id">
+                    <a href="#" onclick="ConfirmDelete('formMenu-@entityMenu.Id')">удалить|</a>
+                </form>
+
+                <a asp-area="" asp-controller="ShowMenu" asp-action="Index" asp-route-id="@entityMenu.Id">
+                    @($"{entityMenu.Title}")
+                </a>
+            </div>
+                    <br />
+                }
+            }
+        </div>
+    }
+</div>

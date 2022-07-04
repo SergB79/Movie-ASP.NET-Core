@@ -1,0 +1,32 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+<head>
+
+    @await Html.PartialAsync("TitleMetaPartial")
+    @await Html.PartialAsync("CssNoscriptPartial")
+
+</head>
+<body class="is-preload">
+    <div id="wrapper">
+
+        @await Html.PartialAsync("HeaderPartial")
+        @(await Component.InvokeAsync<MenuViewsModel>())
+
+        <div id="main">
+            <div class="inner">
+                <header>
+                    @RenderBody()
+                </header>
+
+            </div>
+        </div>
+
+        @await Html.PartialAsync("FooterPartial")
+
+    </div>
+
+    @await Html.PartialAsync("ScriptsPartial")
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+﻿@model MenuField
+
+@{
+    ViewBag.Title = Model.MetaTitle;
+    ViewBag.Description = Model.MetaDescription;
+    ViewBag.Keywords = Model.MetaKeywords;
+}
+
+<div>
+    <h2>
+        @Model.Title
+    </h2>
+</div>
+<br />
+<div>
+    @Html.Raw(Model.Text)
+</div>

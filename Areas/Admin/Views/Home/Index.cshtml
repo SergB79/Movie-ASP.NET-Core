@@ -1,0 +1,50 @@
+﻿
+@{
+    string strTitle = "Панель администратора";
+    ViewBag.Title = strTitle;
+}
+
+<div>
+    <h2>@strTitle</h2>
+
+    <br />
+    <div class="tabs">
+        <input type="radio" name="tab-btn" id="tab-btn-1" value="" checked>
+        <label for="tab-btn-1">Редактировать фильмы</label>
+        <input type="radio" name="tab-btn" id="tab-btn-2" value="">
+        <label for="tab-btn-2">Редактировать меню</label>
+        <input type="radio" name="tab-btn" id="tab-btn-3" value="">
+        <label for="tab-btn-3">Добавить администратора</label>
+        <div id="content-1">
+            @await Html.PartialAsync("Movies")
+        </div>
+        <div id="content-2">
+            @await Html.PartialAsync("Menu")
+        </div>
+        <div id="content-3">
+            Добавить администратора
+        </div>
+    </div>
+
+    <br />
+    <div class="div-box">
+        <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
+            <input type="submit" value="Выйти" />
+        </form>
+    </div>
+
+    <br />
+    <div class="div-box">
+        <form asp-area="Admin" asp-controller="Download" asp-action="GetFile" method="post">
+            <input type="submit" value="Скачать список фильмов" />
+        </form>
+    </div>
+</div>
+
+<script>
+    function ConfirmDelete(i) {
+            var x = confirm("Вы хотите удалить запись?");
+            if (x) document.getElementById(i).submit();
+            return X;
+    }
+</script>

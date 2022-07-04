@@ -1,0 +1,35 @@
+﻿@model IQueryable<MovieItem>
+
+@{
+    string strTitle = "Фильмы";
+    ViewBag.Title = strTitle;
+}
+
+@{
+    int nStyle = 1;
+    string Count()
+    {
+        
+        if (nStyle > 5) nStyle = 1; else nStyle++;
+        return "style" + nStyle.ToString();
+    }
+}
+
+<section class="tiles">
+    @foreach (MovieItem entity in Model)
+    {
+        <article class=@(Count())>
+
+            <span class="image">
+                <img src="~/images/@entity.TitleImagePath" alt="" />
+            </span>
+            <a asp-area="" asp-controller="MovieShow" asp-action="Index" asp-route-id="@entity.Id">
+                <h2>@entity.Title</h2>
+                <div class="content">
+                    <p>@entity.Janre</p>
+                </div>
+            </a>
+        </article>
+    }
+
+</section>

@@ -1,0 +1,18 @@
+﻿@model IQueryable<MenuField>
+
+<nav id="menu">
+    <h2>меню</h2>
+    <ul>
+        @foreach (MenuField entity in Model)
+        {
+            @if (entity.CodeWord == "PageIndex")
+            {
+                <li><a asp-area="" asp-controller="Home" asp-action="Index" asp-route-id="">@($"{entity.Title}")</a></li>
+            }
+            else
+            {
+                <li><a asp-area="" asp-controller="ShowMenu" asp-action="Index" asp-route-id="@entity.Id">@($"{entity.Title}")</a></li>
+            }
+        }
+    </ul>
+</nav>
